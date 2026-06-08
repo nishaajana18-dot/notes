@@ -1,0 +1,16 @@
+Fibonacci Number Assignment
+Date:  2026-06-08
+
+Description: 
+Create a function that computes the nth Fibonacci Number.
+
+The Fibonacci sequence is a series of numbers where each number is the sum
+ of the two preceding ones, usually starting with 0 and 1
+
+Things I need: 
+- Inductive hypothesis: f(0) = 0 and f(1) = 1
+- Definition: f_n = f_n-1 + f_n-2 
+- Function: fib(n) = fib(n-1) + fib(n-2) 
+
+def fib(n): 
+ 
