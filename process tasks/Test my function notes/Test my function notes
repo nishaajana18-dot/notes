@@ -1,0 +1,14 @@
+step 1: identify what the function should do 
+step 2: pick a test framework (pytest for python)
+step 3: create a test file that lives next to your code or in a tests/ folder.
+step 4: write a test case with a clear pattern. it can follow
+- set up inputs and any needed objects.
+-call the function
+check the result.
+step 5: make sure yiyr test covers
+- normal input
+- edge cases
+- invalid input
+empty or null-like input if relevant.
+step 6: run the test
+step 7: refactor if needed.
