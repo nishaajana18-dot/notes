@@ -1,0 +1,40 @@
+Recursion
+=========
+
+Recursion is a problem-solving technique in which a problem is solved by reducing it to smaller problems of the same form.
+
+In programming, recursion means that a function calls itself.
+
+Example:
+
+    int main() {
+        main();
+        return 0;
+    }
+
+(This is a terrible example and will crash with a segmentation fault.)
+
+Every recursive algorithm involves at least two cases:
+
+- Base case: the simple case that can be answered directly; the case that recursive calls reduce to.
+- Recursive case: a more complex case that cannot be answered directly, but can be described in terms of smaller occurrences of the same problem.
+
+Example:
+
+    int numPeopleInLine(Person curr) {
+        // base case
+        if (noOneBehind(curr)) {
+            return 1;
+        } else {
+            // recursive case
+            Person personBehind = curr.getBehind();
+            return numPeopleInLine(personBehind) + 1; // recursive call
+        }
+    }
+
+The Three "Musts" of Recursion
+-----------------------------
+
+- Your code must handle all valid inputs.
+- You must have a base case that does not make recursive calls.
+- When you make a recursive call, it should be to a simpler instance of the same problem and make forward progress toward the base case.
