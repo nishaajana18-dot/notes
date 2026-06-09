@@ -6,11 +6,13 @@ Definition:
 
 Simple Recursive Power:
 
+```python
 def power(x, n):
     if n == 0:
         return 1
     else:
         return x * power(x, n - 1)
+```
 
 Even-power optimization:
 For even exponents, we can reduce work by using:
@@ -18,6 +20,7 @@ For even exponents, we can reduce work by using:
 
 This gives us a faster algorithm for even n.
 
+```cpp
 if (n == 0) {
     // base case
     return 1;
@@ -31,6 +34,7 @@ if (n == 0) {
         return y * y;
     }
 }
+```
 
 Problem specification:
 - Inputs: a real number x, an integer n
@@ -38,6 +42,7 @@ Problem specification:
 
 Exponentiation by Squaring Algorithm:
 
+```text
 function exp_by_squaring(x, n) is
     if n < 0 then
         return exp_by_squaring(1 / x, -n)
@@ -48,6 +53,7 @@ function exp_by_squaring(x, n) is
     else if n is odd then
         return x * exp_by_squaring(x * x, (n - 1) / 2)
 end function
+```
 
 Notes:
 - The algorithm handles negative exponents by flipping the base and negating the exponent.
