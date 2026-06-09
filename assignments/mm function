@@ -1,0 +1,12 @@
+def mm(A, B):
+    row_A = len(A)
+    col_A = len(A[0])
+    col_B = len(B[0])
+    result = [[0] * col_B for _ in range(row_A)]
+
+    for i in range(row_A):
+        for j in range(col_B):
+            for k in range(col_A):
+                result[i][j] += A[i][k] * B[k][j]
+    return result
+

@@ -12,5 +12,13 @@ Things I need:
 - Definition: f_n = f_n-1 + f_n-2 
 - Function: fib(n) = fib(n-1) + fib(n-2) 
 
+
 def fib(n): 
+    #basecase 
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    #recursivecase 
+    return fib(n-1) +fib( n-2 )
  

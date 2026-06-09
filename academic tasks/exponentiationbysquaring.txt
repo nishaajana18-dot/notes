@@ -1,0 +1,55 @@
+Exponentiation by Squaring
+
+Definition:
+- Exponentiation: x^n = x * x^(n - 1)
+- Base case: x^0 = 1
+
+Simple Recursive Power:
+
+def power(x, n):
+    if n == 0:
+        return 1
+    else:
+        return x * power(x, n - 1)
+
+Even-power optimization:
+For even exponents, we can reduce work by using:
+- x^n = x^(n/2) * x^(n/2)
+
+This gives us a faster algorithm for even n.
+
+if (n == 0) {
+    // base case
+    return 1;
+} else {
+    if (n % 2 == 1) {
+        // if n is odd
+        return x * power(x, n - 1);
+    } else {
+        // else, if exp is even
+        int y = power(x, n / 2);
+        return y * y;
+    }
+}
+
+Problem specification:
+- Inputs: a real number x, an integer n
+- Output: x^n
+
+Exponentiation by Squaring Algorithm:
+
+function exp_by_squaring(x, n) is
+    if n < 0 then
+        return exp_by_squaring(1 / x, -n)
+    else if n = 0 then
+        return 1
+    else if n is even then
+        return exp_by_squaring(x * x, n / 2)
+    else if n is odd then
+        return x * exp_by_squaring(x * x, (n - 1) / 2)
+end function
+
+Notes:
+- The algorithm handles negative exponents by flipping the base and negating the exponent.
+- It reduces the exponent by about half each recursive step, leading to O(log n) time complexity.
+

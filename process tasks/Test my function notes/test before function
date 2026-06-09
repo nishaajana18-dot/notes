@@ -1,1 +1,9 @@
 test before function
+1. What should the function do?
+2. What inputs does it accept?
+3. What outputs should it return?
+4. What are the success cases?
+5. What are the failure cases?
+6. What are the edge cases?
+7. Write tests for all of the above.
+8. Write code that makes the tests pass.

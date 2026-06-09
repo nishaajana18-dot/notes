@@ -1,5 +1,5 @@
 Recursion
-=========
+
 
 Recursion is a problem-solving technique in which a problem is solved by reducing it to smaller problems of the same form.
 
@@ -33,8 +33,6 @@ Example:
     }
 
 The Three "Musts" of Recursion
------------------------------
-
 - Your code must handle all valid inputs.
 - You must have a base case that does not make recursive calls.
 - When you make a recursive call, it should be to a simpler instance of the same problem and make forward progress toward the base case.
