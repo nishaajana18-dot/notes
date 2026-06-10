@@ -1,8 +1,27 @@
 Exponentiation by Squaring Assignment
 Date: 2026-06-10
-Description 
+Description: Create a function which implements Exponentiation by squaring
+
+Things to do:
+- read about exponentiation by sqauring.
+-learn about the exponentiation by asqauring function.
+- run the function.
+-Learn more about modular exponentiation.
+-Write a modular exponentiation function using exponentiation by sqauring. 
 
 
+Modular exponentiation is exponentiation performed over a modulus.
+ It is useful in computer science, especially in the field of public-key
+cryptography, where it is used in both Diffie–Hellman key exchange and RSA public/private keys.
+Modular exponentiation is the remainder c when an integer b (the base) is raised to the power e 
+(the exponent), and divided by a positive integer m (the modulus); that is, c = be mod m. From 
+the definition of division, it follows that 0 ≤ c < m.
+
+For example, given b = 5, e = 3 and m = 13, dividing 53 = 125 by 13 leaves a remainder of c = 8.
+When b and m are relatively prime, one can also allow the exponent e to be negative by finding
+the multiplicative inverse d of b modulo m (for instance by using extended Euclidean algorithm).
+More precisely:
+c = be mod m = d−e mod m, where e < 0 and b ⋅ d ≡ 1 (mod m).
 
 
 def modular_exponentiation(x, n, m):
