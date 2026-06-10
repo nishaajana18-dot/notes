@@ -53,3 +53,7 @@ Notes:
 - The algorithm handles negative exponents by flipping the base and negating the exponent.
 - It reduces the exponent by about half each recursive step, leading to O(log n) time complexity.
 
+In each recursive call, the least-significant digit of the binary representation of n is removed.
+It follows that the number of recursive calls is ⌈log_2 n⌉, the number of bits in the binary representation of n.
+This algorithm computes that many squares and a smaller number of multiplications, equal to the number of 1s in the binary representation of n. 
+This logarithmic number of operations is compared with the trivial algorithm, which requires n − 1 multiplications.
