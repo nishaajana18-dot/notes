@@ -1,0 +1,87 @@
+1000th Fibonacci number Assignment 
+Date : 2026-06-10
+
+Description: Compute the 1000th Fibonacci number F_1000 using this decorator guide.
+
+Things to do:
+ 1. Read about decorators and understand how they work.
+ 2. Use the guide to write a memoize function in python for my fib(n) function. 
+ 3. Use function to compute the 1000th Fibonacci number. 
+
+
+ To do this we first have to understand decorators. A decorator is a function which, when applied to a given function, gives the given function new capabilities.
+
+Examples of new capabilities include:
+- Resource measurement
+- Caching
+- Throttling
+
+Time Decorators 
+Our decorator example before allowed us to wrap a function and do what we like with it. What can we do with this ability? We can measure how long function calls take using the following decorator:
+
+import time
+from functools import wraps
+import threading
+
+_timer_state = threading.local()
+
+def time_decorator(fn):
+    @wraps(fn)
+    def timed(*args, **kwargs):
+        if getattr(_timer_state, 'running', False):
+            return fn(*args, **kwargs)
+        _timer_state.running = True
+        try:
+            start = time.time()
+            out = fn(*args, **kwargs)
+            end = time.time()
+            print(f"Ran in {(end - start) * 1000:.0f} ms")
+            return out
+        finally:
+            _timer_state.running = False
+    return timed
+
+this will say how much time is needed for the function to produce a return 
+
+@time_decorator
+def fib(n): 
+    #basecase 
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    #recursivecase 
+    return fib(n-1) +fib( n-2 )
+print(fib(30))
+
+
+The memoize Decorator. 
+Memoization is a great way to cache function calls according to their arguments. This technique trades space for time, and as a result can make your code run faster. 
+
+An example of a memoize decorator 
+from functools import wraps
+
+def memoize(fn):
+    cache = {}
+
+    @wraps(fn)
+    def memoized(*args):
+        if args not in cache:
+            cache[args] = fn(*args)
+        return cache[args]
+
+    return memoized
+
+New memoized function 
+
+def fibonacciParam(fib,n):
+    if n == 1 or n ==2: 
+        return 1
+    return fib(fib,n-1) + fib(fib, n-2)
+
+mem_fibonacciParam = memoize(fibonacciParam)
+
+def memoized_fib(n):
+    return mem_fibonacciParam(mem_fibonacciParam, n)
+
+print(memoized_fib(1000))

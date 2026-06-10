@@ -1,0 +1,27 @@
+Exponentiation by Squaring Assignment
+Date: 2026-06-10
+Description
+
+
+Modular exponentiation is the remainder c when an integer b (the base) is raised to the power e (the exponent), and divided by a positive integer m (the modulus); that is, c = be mod m. From the definition of division, it follows that 0 ≤ c < m. # type: ignore
+
+For example, given b = 5, e = 3 and m = 13, dividing 53 = 125 by 13 leaves a remainder of c = 8. # type: ignore
+
+When b and m are relatively prime, one can also allow the exponent e to be negative by finding the multiplicative inverse d of b modulo m (for instance by using extended Euclidean algorithm). More precisely: # type: ignore
+
+c = be mod m = d−e mod m, where e < 0 and b ⋅ d ≡ 1 (mod m).
+
+
+def modular_exponentiation(x, n, m):
+    # Base case: anything to the power of 0 is 1 mod m
+    if n == 0:
+        return 1
+    # If the exponent is even, compute (x^(n/2))^2 mod m
+    elif n % 2 == 0:
+        y = modular_exponentiation(x, n // 2, m)
+        return (y * y) % m
+    # If the exponent is odd, reduce it by one and multiply by x
+    else:
+        return (x * modular_exponentiation(x, n - 1, m)) % m
+
+modular_exponentiation(2, 10, 1000)

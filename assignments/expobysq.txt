@@ -1,0 +1,20 @@
+Exponentiation by Squaring Assignment
+Date: 2026-06-10
+Description 
+
+
+
+
+def modular_exponentiation(x, n, m):
+    # Base case: anything to the power of 0 is 1 mod m
+    if n == 0:
+        return 1
+    # If the exponent is even, compute (x^(n/2))^2 mod m
+    elif n % 2 == 0:
+        y = modular_exponentiation(x, n // 2, m)
+        return (y * y) % m
+    # If the exponent is odd, reduce it by one and multiply by x
+    else:
+        return (x * modular_exponentiation(x, n - 1, m)) % m
+
+modular_exponentiation(2, 10, 1000)
