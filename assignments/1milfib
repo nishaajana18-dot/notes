@@ -1,0 +1,25 @@
+Computing the 1 millionth Fibonacci number
+Date: 2026-06-11
+Description: Compute the 1000000th Fibonacci number F1000000 using this tutorial
+
+Things to do:
+- Read tutorial
+
+Notes:
+* The Fibonacci sequence is defined as F(0)=0, F(1)=1, and F(n)=F(n-1)+F(n-2).
+* The sequence begins: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+* There are four main algorithms for computing Fibonacci numbers: recursive, dynamic programming, matrix exponentiation, and fast doubling.
+* The recursive method is the simplest but extremely slow because it repeatedly recalculates the same values.
+* Dynamic programming improves efficiency by building the sequence one value at a time, but it still requires O(n) operations.
+* Matrix exponentiation uses exponentiation by squaring and reduces runtime to O(log n).
+* Fast doubling is the most efficient method discussed and also runs in O(log n) time.
+* Fast doubling uses the identities:
+  F(2k) = F(k) (2 F(k+1) - F(k))
+  F(2k+1) = F(k+1)^2 + F(k)^2
+
+Instead of calculating every Fibonacci number up to n, the algorithm halves the input and uses these identities to compute larger values directly.
+The helper function returns both F(k) and F(k+1), allowing the algorithm to efficiently calculate F(2k) and F(2k+1).
+To compute F(1,000,000), the algorithm repeatedly divides 1,000,000 by 2 until reaching the base case, then reconstructs the answer using the fast doubling formulas.
+Because the input is halved at each step, the algorithm performs only logarithmic computations, making it practical to calculate extremely large Fibonacci numbers such as the millionth.
+
+
