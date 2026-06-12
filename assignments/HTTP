@@ -1,28 +1,39 @@
-# HTTP Overview
+# HTTP Assignment
+
+Date: 2026-06-15
+
+## Assignment Requirements
+
+- Create a git repository to store all your code on GitHub.
+- Create an HTTP server using Flask.
+- Add a GET endpoint that responds with a message like "Hello World!."
+- Add a POST endpoint that receives a request body and echoes it in the response.
+- Add a proxy endpoint for the PokeAPI.
+  - Example: GET `/pokemon/eevee` should return the same data as GET `https://pokeapi.co/api/v2/pokemon/eevee`.
+  - The endpoint should accept a parameter, so `/pokemon/bulbasaur` returns data from `https://pokeapi.co/api/v2/pokemon/bulbasaur`.
+- Create a `README.md` that explains how to run your server after cloning.
+- Use a Python virtual environment to manage dependencies, including Flask and requests.
+
+## HTTP Overview
 
 HTTP (Hypertext Transfer Protocol) is a core Internet protocol that defines how data is exchanged between clients and servers on the web.
 
-## What HTTP does
+### What HTTP does
 
-| Feature | Description |
-|---|---|
-| Communication | Enables communication between web browsers and web servers |
-| Foundation | Forms the basis of data transfer on the World Wide Web |
-| Rules | Defines rules for requesting and delivering data between systems |
+- Enables communication between web browsers and web servers.
+- Forms the foundation for data transfer on the World Wide Web.
+- Defines rules for requesting and delivering resources.
+- Provides a standardized mechanism for clients and servers to exchange data.
 
-HTTP is a standardized communication mechanism that enables clients and servers to exchange resources efficiently.
+### Key characteristics
 
-## HTTP characteristics
+- Stateless: Each request is independent, and the server does not retain previous interaction information.
+- Text-Based: Messages are plain text, making them readable and debuggable.
+- Client-Server Model: Uses a client-server architecture for requesting and serving resources.
+- Request-Response: Operates on a request-response cycle between clients and servers.
+- Request Methods: Supports methods like GET, POST, PUT, DELETE for different actions.
 
-| Characteristic | Description |
-|---|---|
-| Stateless | Each request is independent and the server does not retain previous interactions |
-| Text-Based | Messages are plain text, making them readable and debuggable |
-| Client-Server Model | Uses a client-server architecture for requesting and serving resources |
-| Request-Response | Operates on a request-response cycle between clients and servers |
-| Request Methods | Supports methods like GET, POST, PUT, DELETE for different actions on resources |
-
-## HTTP methods
+## HTTP Methods
 
 | Method | Purpose |
 |---|---|
@@ -36,16 +47,16 @@ HTTP is a standardized communication mechanism that enables clients and servers 
 | TRACE | Echoes the request for debugging (rarely used due to security risks) |
 | CONNECT | Establishes a tunnel, typically for HTTPS via proxies |
 
-## HTTP request/response flow
+## HTTP Request/Response Flow
 
-| Step | Description |
-|---|---|
-| Client sends request | Sends an HTTP request with method, URL, headers, and optional body |
-| Server processes request | Handles the request and performs required operations |
-| Server sends response | Returns status code, headers, and optional data |
-| Client processes response | Renders or handles the received content |
+HTTP follows a request-response model where each client request is answered by a server response.
 
-## Example resource requests
+- Client sends request: method, URL, headers, and optional body.
+- Server processes request: handles the request and performs required operations.
+- Server sends response: returns status code, headers, and optional data.
+- Client processes response: renders or handles the received content.
+
+## Example Resource Requests
 
 | Requested Resource | Resource Type | Server Response |
 |---|---|---|
@@ -54,3 +65,22 @@ HTTP is a standardized communication mechanism that enables clients and servers 
 | Image (JPG) | Image (JPG) | Server sends JPG image |
 | JavaScript Code | JavaScript (JS) | Server sends JS file |
 | Data (XML or JSON) | Data | Server sends XML/JSON data |
+
+## Request/Response Examples
+
+- HTML Page: the server sends back the HTML content.
+- CSS: the server sends the CSS file to style a webpage.
+- Image: the server sends the image file (for example, JPG).
+- JavaScript: the server sends JS code for page functionality.
+- Data: the server sends XML or JSON data.
+
+## HTTP Concepts
+
+| Concept | Description |
+|---|---|
+| HTTP Request Headers | Key-value pairs sent with the request that provide client details, preferences, and metadata |
+| HTTP Request Body | Data sent to the server, such as form data, credentials, or payload content |
+| HTTP Response | Server reply to a request, including status code, headers, and optional body |
+| HTTP Status Codes | Three-digit codes indicating request results: 1xx informational, 2xx success, 3xx redirection, 4xx client error, 5xx server error |
+| HTTP Response Headers | Metadata describing the response, such as content type, language, and encoding |
+| HTTP Response Body | Actual content returned by the server, such as HTML, JSON, images, or other data |
