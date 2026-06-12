@@ -1,39 +1,56 @@
+# HTTP Overview
+
 HTTP (Hypertext Transfer Protocol) is a core Internet protocol that defines how data is exchanged between clients and servers on the web.
-It does the following:
--Enables communication between web browsers and web servers.
--Forms the foundation of data transfer on the World Wide Web.
--Defines rules for requesting and delivering data between systems.
 
-HTTP defines a standardized communication mechanism that enables clients and servers to exchange resources efficiently over the web.
+## What HTTP does
 
--Stateless: Each request is independent and the server doesn't retain previous -interactions' information.
--Text-Based: Messages are in plain text, making them readable and debuggable.
--Client-Server Model: Follows a client-server architecture for requesting and serving
- resources.
--Request-Response: Operates on a request-response cycle between clients and servers.
--Request Methods: Supports various methods like GET, POST, PUT, DELETE for different -actions on resources.
+| Feature | Description |
+|---|---|
+| Communication | Enables communication between web browsers and web servers |
+| Foundation | Forms the basis of data transfer on the World Wide Web |
+| Rules | Defines rules for requesting and delivering data between systems |
 
-Methods of HTTP
-HTTP methods define the type of action a client wants to perform on a resource hosted by a server.
+HTTP is a standardized communication mechanism that enables clients and servers to exchange resources efficiently.
 
--GET: Retrieves data without modifying the resource.
--POST: Submits data for processing or resource creation.
--PUT: Creates or replaces a resource completely.
--PATCH: Partially updates a resource.
--DELETE: Removes a resource from the server.
--HEAD: Retrieves response headers only.
--OPTIONS: Returns supported methods and communication options.
--TRACE: Echoes the request for debugging (rarely used due to security risks).
--CONNECT: Establishes a tunnel, typically for HTTPS via proxies.
+## HTTP characteristics
 
-HTTP Request/Response:
-HTTP follows a request-response model where each client request is answered by a server response, following a defined communication flow.
+| Characteristic | Description |
+|---|---|
+| Stateless | Each request is independent and the server does not retain previous interactions |
+| Text-Based | Messages are plain text, making them readable and debuggable |
+| Client-Server Model | Uses a client-server architecture for requesting and serving resources |
+| Request-Response | Operates on a request-response cycle between clients and servers |
+| Request Methods | Supports methods like GET, POST, PUT, DELETE for different actions on resources |
 
--Client sends request: Sends an HTTP request with method, URL, headers, and optional body.
--Server processes request: Handles the request and performs required operations.
--Server sends response: Returns status code, headers, and optional data.
--Client processes response: Renders or handles the received content.
+## HTTP methods
 
-Diagram:
+| Method | Purpose |
+|---|---|
+| GET | Retrieves data without modifying the resource |
+| POST | Submits data for processing or resource creation |
+| PUT | Creates or replaces a resource completely |
+| PATCH | Partially updates a resource |
+| DELETE | Removes a resource from the server |
+| HEAD | Retrieves response headers only |
+| OPTIONS | Returns supported methods and communication options |
+| TRACE | Echoes the request for debugging (rarely used due to security risks) |
+| CONNECT | Establishes a tunnel, typically for HTTPS via proxies |
 
-![HTTP request and response flow](image.png) 
+## HTTP request/response flow
+
+| Step | Description |
+|---|---|
+| Client sends request | Sends an HTTP request with method, URL, headers, and optional body |
+| Server processes request | Handles the request and performs required operations |
+| Server sends response | Returns status code, headers, and optional data |
+| Client processes response | Renders or handles the received content |
+
+## Example resource requests
+
+| Requested Resource | Resource Type | Server Response |
+|---|---|---|
+| HTML Page | HTML | Server sends HTML file |
+| Style Sheet (CSS) | CSS | Server sends CSS file |
+| Image (JPG) | Image (JPG) | Server sends JPG image |
+| JavaScript Code | JavaScript (JS) | Server sends JS file |
+| Data (XML or JSON) | Data | Server sends XML/JSON data |
