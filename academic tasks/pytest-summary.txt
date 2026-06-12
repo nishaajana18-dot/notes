@@ -1,0 +1,77 @@
+Pytest Summary
+
+1. Introduction
+- Pytest is a Python testing framework.
+- It discovers tests automatically and supports fixtures, mocking, parametrized tests, and plugins.
+- Works well for small scripts and large applications.
+
+2. Naming Rules
+- Test files: `test_*.py` or `*_test.py`
+- Test functions: start with `test_`
+
+3. AAA Pattern
+- Arrange: set up data or fixtures
+- Act: run the function under test
+- Assert: verify the result
+
+4. Fixtures
+- Reusable setup code for tests
+- Define with `@pytest.fixture`
+- Use fixture names as function arguments
+
+5. Fixture Scopes
+- `function`: per test
+- `class`: per class
+- `module`: per module
+- `session`: per test run
+
+6. conftest.py
+- Shares fixtures across test files automatically.
+
+7. Setup and Teardown
+- Use `yield` in fixtures to separate setup and cleanup.
+
+8. Parametrized Tests
+- Run one test with many input sets using `@pytest.mark.parametrize()`.
+
+9. Mocking and Patching
+- Use `unittest.mock` to replace network calls, DB access, file I/O, and external APIs.
+- Use `patch` as a decorator or context manager.
+
+10. Mock vs MagicMock
+- `Mock`: simple stubs and attributes
+- `MagicMock`: supports magic methods (`__len__`, `__iter__`, etc.)
+
+11. Monkeypatching
+- Use `monkeypatch` to modify env vars, functions, or attributes.
+- Pytest restores changes after the test.
+
+12. Moto for AWS
+- Use `moto` to mock AWS services like DynamoDB, S3, SQS, SNS, Lambda.
+
+13. Environment Variable Testing
+- Mock env vars with `monkeypatch` or `patch.dict()`.
+
+14. Exception Testing
+- Use `pytest.raises()` to verify exceptions and messages.
+
+15. Spy vs Mock vs Stub
+- Mock: replace object entirely
+- Stub: return fixed values
+- Spy: wrap real logic and record calls
+
+16. Markers
+- Use markers like `@pytest.mark.slow`, `integration`, `smoke`.
+- Skip tests with `@pytest.mark.skip()` or `@pytest.mark.skipif()`.
+
+17. Capturing Logs
+- Use `caplog` to inspect logged messages.
+
+18. Capturing Output
+- Use `capsys` to capture stdout/stderr.
+
+19. Temporary Files
+- Use `tmp_path` for temporary files and directories.
+
+20. Async Testing
+- Use `pytest-asyncio` for async code.

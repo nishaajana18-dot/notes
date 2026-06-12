@@ -1,0 +1,290 @@
+1. Introduction to Pytest
+
+Pytest is a testing framework that makes it easy to write and run tests.
+
+Key features:
+- Simple, readable test syntax
+- Automatic test discovery
+- Support for fixtures, mocking, parametrized tests, and plugins
+- Easy integration with CI/CD pipelines
+- Works for both small scripts and large applications
+
+Example:
+
+def test_add():
+    assert add(1, 2) == 3
+
+Pytest automatically finds this test and executes it.
+
+2. Test Naming and Structure
+
+Pytest uses simple discovery rules:
+- Test files must be named `test_*.py` or `*_test.py`
+- Test functions must start with `test_`
+
+Example project structure:
+
+tests/
+    test_users.py
+    test_orders.py
+    conftest.py
+src/
+    app/
+
+This keeps application code separate from tests.
+
+3. The Arrange–Act–Assert (AAA) Pattern
+
+The AAA pattern helps keep tests readable:
+- Arrange: prepare data, mocks, fixtures
+- Act: call the function you want to test
+- Assert: verify the output or behavior
+
+Example:
+
+def test_login_success():
+    # Arrange
+    user = User("john", "123")
+
+    # Act
+    result = authenticate(user.username, user.password)
+
+    # Assert
+    assert result is True
+
+Another popular style is Given–When–Then, often used in BDD.
+
+4. Fixtures — Reusable Test Setup
+
+Fixtures are the core of Pytest. They allow you to:
+- Reuse setup logic
+- Keep tests clean
+- Provide data or objects to many tests
+
+Example fixture:
+
+import pytest
+
+@pytest.fixture
+def sample_user():
+    return {"name": "Alice", "role": "admin"}
+
+Example usage:
+
+def test_user_role(sample_user):
+    assert sample_user["role"] == "admin"
+
+5. Fixture Scopes
+
+Pytest supports different fixture scopes:
+- function: created for each test (default)
+- class: created once per class
+- module: created once per module
+- session: created once per test run
+
+Example:
+
+@pytest.fixture(scope="module")
+def db():
+    return connect_to_fake_db()
+
+6. conftest.py — Shared Fixtures Across Files
+
+`conftest.py` lets you share fixtures across multiple test files without imports.
+
+Example `conftest.py`:
+
+import pytest
+
+@pytest.fixture
+def token():
+    return "secure-token"
+
+Any test in the same directory can use `token` automatically.
+
+7. Setup and Teardown
+
+Use fixtures to handle setup and teardown:
+
+@pytest.fixture
+def connection():
+    conn = create_db_connection()
+    yield conn
+    conn.close()
+
+The `yield` keyword separates setup from teardown.
+
+8. Parametrized Tests
+
+Parametrization lets you run the same test with multiple inputs:
+
+import pytest
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (1, 2, 3),
+        (5, 5, 10),
+        (-1, 1, 0),
+    ],
+)
+def test_add(a, b, expected):
+    assert add(a, b) == expected
+
+This reduces duplication and increases coverage.
+
+9. Mocking and Patching
+
+Mocking isolates code and avoids real external calls.
+
+Common reasons to mock:
+- Network requests
+- Database connections
+- File I/O
+- External APIs
+
+Pytest works well with Python’s `unittest.mock`.
+
+Example patching:
+
+from unittest.mock import patch
+
+@patch("app.email.send_email")
+def test_email(mock_send):
+    mock_send.return_value = True
+    assert send_notification() is True
+
+You can use `patch` as:
+- a decorator
+- a context manager
+
+10. Mock vs MagicMock
+
+Mock:
+- Basic mock object
+- Simple attribute stubbing
+
+MagicMock:
+- Supports Python magic methods like `len`, `iter`, `str`, and more
+- Useful for mocking complex behavior
+
+11. Monkeypatching
+
+`monkeypatch` lets you modify:
+- Environment variables
+- Functions
+- Object attributes
+
+Example:
+
+def test_env(monkeypatch):
+    monkeypatch.setenv("MODE", "test")
+
+Pytest reverts changes automatically after the test.
+
+12. Mocking AWS Services (moto)
+
+Moto lets you mock AWS services without real AWS access.
+
+Example:
+
+from moto import mock_dynamodb
+import boto3
+
+@mock_dynamodb
+def test_dynamodb():
+    client = boto3.client("dynamodb", region_name="us-east-1")
+    client.create_table(...)
+
+Moto supports DynamoDB, S3, SQS, SNS, Lambda, Step Functions, and more.
+
+13. Environment Variable Testing
+
+Environment variables often drive app configuration.
+Mock them using:
+- `monkeypatch`
+- `patch.dict`
+
+Example:
+
+import os
+
+def test_env(monkeypatch):
+    monkeypatch.setenv("DEBUG", "true")
+    assert os.environ["DEBUG"] == "true"
+
+14. Exception Testing
+
+Use `pytest.raises` to verify error handling:
+
+import pytest
+
+def test_raises():
+    with pytest.raises(ValueError):
+        risky_function()
+
+You can also validate the exception message:
+
+with pytest.raises(ValueError) as e:
+    risky_function()
+
+assert "Invalid" in str(e.value)
+
+15. Spy vs Mock vs Stub
+
+- Mock: replaces the object completely
+- Stub: provides simple return values
+- Spy: wraps real logic and records calls
+
+Use cases:
+- Use a mock when you cannot run the real dependency
+- Use a stub when you only need predefined data
+- Use a spy when you want to verify behavior
+
+16. Pytest Markers
+
+Markers help categorize tests:
+
+@pytest.mark.slow
+@pytest.mark.integration
+@pytest.mark.smoke
+
+Skip a test:
+
+@pytest.mark.skip(reason="Not implemented yet")
+def test_feature():
+    pass
+
+Conditional skip:
+
+@pytest.mark.skipif(sys.platform == "win32", reason="Windows not supported")
+
+17. Capturing Logs (caplog)
+
+Use `caplog` to validate logging behavior:
+
+def test_logging(caplog):
+    logger.info("Process started")
+    assert "started" in caplog.text
+
+18. Capturing stdout and stderr (capsys)
+
+Example:
+
+def test_output(capsys):
+    print("Hello")
+    captured = capsys.readouterr()
+    assert "Hello" in captured.out
+
+19. Temporary Files and Directories (tmp_path)
+
+Pytest provides built-in fixtures for temporary files:
+
+def test_file(tmp_path):
+    file = tmp_path / "data.txt"
+    file.write_text("hello")
+    assert file.read_text() == "hello"
+
+20. Testing Async Code
+
+Use the `pytest-asyncio` plugin for async tests.
