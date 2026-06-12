@@ -1,59 +1,24 @@
-Exponentiation by Squaring
+Exponentiation by Squaring — Summary
 
-Definition:
-- Exponentiation: x^n = x * x^(n - 1)
-- Base case: x^0 = 1
+Goal: Compute x^n efficiently.
 
-Simple Recursive Power:
+Key ideas:
+- Naive recursion: O(n) multiplications.
+- Use even-power identity: x^n = (x^(n/2))^2 to halve the exponent each step.
+- For odd n, compute x * x^(n-1) or use x * exp_by_squaring(x*x, (n-1)/2).
+- Handle negative exponents by computing exp_by_squaring(1/x, -n).
 
-def power(x, n):
-    if n == 0:
-        return 1
-    else:
-        return x * power(x, n - 1)
+Algorithm complexity:
+- Time: O(log n)
+- Space: O(log n) recursion depth (iterative variants reduce space)
 
-Even-power optimization:
-For even exponents, we can reduce work by using:
-- x^n = x^(n/2) * x^(n/2)
-
-This gives us a faster algorithm for even n.
-
-if (n == 0) {
-    // base case
-    return 1;
-} else {
-    if (n % 2 == 1) {
-        // if n is odd
-        return x * power(x, n - 1);
-    } else {
-        // else, if exp is even
-        int y = power(x, n / 2);
-        return y * y;
-    }
-}
-
-Problem specification:
-- Inputs: a real number x, an integer n
-- Output: x^n
-
-Exponentiation by Squaring Algorithm:
-
-function exp_by_squaring(x, n) is
-    if n < 0 then
-        return exp_by_squaring(1 / x, -n)
-    else if n = 0 then
-        return 1
-    else if n is even then
-        return exp_by_squaring(x * x, n / 2)
-    else if n is odd then
-        return x * exp_by_squaring(x * x, (n - 1) / 2)
-end function
+Pseudocode:
+function exp_by_squaring(x, n):
+  if n < 0: return exp_by_squaring(1/x, -n)
+  if n == 0: return 1
+  if n is even: return exp_by_squaring(x*x, n/2)
+  else: return x * exp_by_squaring(x*x, (n-1)/2)
 
 Notes:
-- The algorithm handles negative exponents by flipping the base and negating the exponent.
-- It reduces the exponent by about half each recursive step, leading to O(log n) time complexity.
-
-In each recursive call, the least-significant digit of the binary representation of n is removed.
-It follows that the number of recursive calls is ⌈log_2 n⌉, the number of bits in the binary representation of n.
-This algorithm computes that many squares and a smaller number of multiplications, equal to the number of 1s in the binary representation of n. 
-This logarithmic number of operations is compared with the trivial algorithm, which requires n − 1 multiplications.
+- Number of multiplications ≈ number of bits in n + number of 1s in n's binary form.
+- Prefer iterative implementation in languages/environments sensitive to recursion depth.

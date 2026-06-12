@@ -1,0 +1,127 @@
+# Python Scripts — Organized Notes
+
+## Overview
+A Python script is a `.py` file containing Python code that performs a specific task when run (e.g., renaming files, backing up folders, or fetching web data). This document summarizes how to write, structure, and run Python scripts across platforms.
+
+---
+
+## Script Structure (recommended)
+- Shebang (Unix/macOS only, optional on Windows): `#!/usr/bin/env python3`
+- Imports: list external modules at the top
+- Functions and classes: reusable components
+- `if __name__ == "__main__":` main execution block
+
+This layout improves readability, debugging, and reuse.
+
+---
+
+## Minimal example
+Filename: `hello.py`
+
+print("Hello, World!")
+
+Run it with:
+
+python .\hello.py
+# or
+py .\hello.py
+
+---
+
+## Making scripts executable (Unix/macOS)
+1. Add shebang to the top of the file:
+
+#!/usr/bin/env python3
+
+2. Make the file executable:
+
+chmod +x hello.py
+
+3. Run directly:
+
+./hello.py
+
+Note: On Windows, `.py` and `.pyw` are associated with `python.exe` and `pythonw.exe`, respectively.
+
+---
+
+## Running as a module
+Use `-m` to run a module found on `sys.path`:
+
+python -m hello
+
+This is useful for CLI entry points and standard library modules (e.g., `python -m http.server`).
+
+---
+
+## Programmatic execution
+- Importing a module runs its top-level code once:
+
+import hello  # runs hello.py once
+
+- To reload a module during an interactive session:
+
+import importlib
+importlib.reload(hello)
+
+- Execute code dynamically (use with caution):
+
+with open('hello.py') as f:
+    exec(f.read())
+
+`exec()` has security risks when used with untrusted input.
+
+---
+
+## IDEs and editors
+Use IDEs (PyCharm, VS Code, Thonny) or advanced editors to run and debug scripts. Common keys:
+- VS Code: `Ctrl+F5` to run
+- PyCharm: `Ctrl+R` to run
+
+IDEs often provide integrated terminals and debugging tools.
+
+---
+
+## Redirecting and appending output
+- Redirect output to a file (overwrite):
+
+python hello.py > output.txt
+
+- Append output to a file:
+
+python hello.py >> output.txt
+
+---
+
+## Running from a file manager
+Double-clicking a `.py` file may run it depending on OS file associations and permissions. On Windows, double-click may open a terminal that closes immediately — prefer running from a terminal or IDE for development.
+
+---
+
+## Summary / Best practices
+- Use a clear structure: imports → functions/classes → main block
+- Prefer `python -m` for module-based execution
+- Use shebang + `chmod +x` for executable scripts on Unix-like systems
+- Avoid `exec()` with untrusted content
+- Use virtual environments for project dependencies
+
+---
+
+## Quick commands
+# Run a script
+python hello.py
+
+# Run a module
+python -m module_name
+
+# Make executable (Unix)
+chmod +x hello.py
+./hello.py
+
+---
+
+If you'd like, I can:
+- Standardize headings in the original `Python Scripts` file or replace it with this Markdown version.
+- Split this content into smaller cheat-sheet and commands files.
+
+Tell me which option you prefer.
